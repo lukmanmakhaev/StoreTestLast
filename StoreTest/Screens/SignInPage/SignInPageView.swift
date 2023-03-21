@@ -99,7 +99,7 @@ struct SignInPageView: View {
                 .padding(.top, 17.4)
                 
                 Button(action: {
-                    
+                    coordinator.present(fullScreenCover: .contentView)
                 }) {
                     
                     HStack {
@@ -115,7 +115,7 @@ struct SignInPageView: View {
                 .padding(.top, 74)
                 
                 Button(action: {
-                    
+                    coordinator.present(fullScreenCover: .contentView)
                 }) {
                     
                     HStack {

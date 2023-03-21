@@ -17,6 +17,9 @@ struct CoordinatorView: View {
                 .navigationDestination(for: Page.self) { page in
                     coordinator.build(page: page)
                 }
+                .fullScreenCover(item: $coordinator.fullScreenCover) { fullScreenCover in
+                    coordinator.build(fullScreenCover: fullScreenCover)
+                }
         }
         .environmentObject(coordinator)
     }
