@@ -7,24 +7,34 @@
 
 import SwiftUI
 
-    //text for testing
-// second testing
-    //git hub
-
 enum Page: String, Identifiable {
-    case login, signIn, profile
+    case login, signIn
     
     var id: String {
         self.rawValue
     }
 }
 
+enum FullScreenCover: String, Identifiable {
+    case contentView
+    
+    var id: String {
+        self.rawValue
+    }
+}
+
+
 class Coordinator: ObservableObject {
     
     @Published var path = NavigationPath()
+    @Published var fullScreenCover: FullScreenCover?
     
     func push(_ page: Page) {
         path.append(page)
+    }
+    
+    func present(fullScreenCover: FullScreenCover) {
+        self.fullScreenCover = fullScreenCover
     }
     
     func pop() {
@@ -42,9 +52,14 @@ class Coordinator: ObservableObject {
             SignInPageView(viewModel: SignInViewPageModel())
         case .login:
             LoginPageView(viewModel: LoginPageViewModel())
-        case .profile:
-            ProfilePageView()
-            
+        }
+    }
+    
+    @ViewBuilder
+    func build(fullScreenCover: FullScreenCover) -> some View {
+        switch fullScreenCover {
+        case .contentView:
+            ContentView()
         }
     }
     
